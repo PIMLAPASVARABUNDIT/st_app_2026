@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 import matplotlib.pyplot as plt
+plt.rcParams['font.family'] = 'Meiryo'
 import numpy as np
 
 MODEL_PATH = "./assets/models.pkl"
