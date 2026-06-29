@@ -100,24 +100,22 @@ if st.session_state["comparison"]:
 
 # ── Feature 2: Heatmap ───────────────────
 st.markdown("---")
-st.markdown("### 🗺️ Heatmap: ราคาตามเขตและระยะจากสถานี")
+st.markdown("### 🗺️ Heatmap: 駅距離・エリア別価格")
 
-STATIONS_SHORT = ['0〜4分', '5〜9分', '10〜19分', '20〜29分', '30分～60分']
-
-with st.expander("เขตที่จะแสดงใน Heatmap", expanded=False):
+with st.expander("表示エリアを選択", expanded=False):
     selected_cities = st.multiselect(
-        "เลือกเขต (สูงสุด 15)",
+        "市区町村（最大15件）",
         options=['千代田区','中央区','港区','新宿区','文京区',
                  '台東区','墨田区','江東区','品川区','目黒区',
                  '大田区','世田谷区','渋谷区','中野区','杉並区'],
         default=['千代田区','港区','新宿区','渋谷区','文京区'],
         max_selections=15
     )
-    heatmap_road = st.radio("前面道路 (Heatmap)", ['幹線道路', '生活道路'], horizontal=True)
+    heatmap_road = st.radio("前面道路", ['幹線道路', '生活道路'], horizontal=True)
 
 if st.button("Heatmap を生成"):
     if not selected_cities:
-        st.warning("เขตอย่างน้อย 1 เขต")
+        st.warning("エリアを1つ以上選択してください。")
     else:
         with st.spinner("計算中..."):
             matrix = []
@@ -150,12 +148,12 @@ if st.button("Heatmap を生成"):
 
 # ── Feature 3: Bar Chart ─────────────────
 st.markdown("---")
-st.markdown("### 📊 Bar Chart: เปรียบเทียบราคาหลายเขต")
+st.markdown("### 📊 Bar Chart: エリア別価格比較")
 
 col_b1, col_b2, col_b3 = st.columns([2, 1, 1])
 with col_b1:
     bar_cities = st.multiselect(
-        "เลือกเขต (สูงสุด 10)",
+        "市区町村（最大10件）",
         options=['千代田区','中央区','港区','新宿区','文京区',
                  '台東区','墨田区','江東区','品川区','目黒区',
                  '大田区','世田谷区','渋谷区','中野区','杉並区',
@@ -170,7 +168,7 @@ with col_b3:
 
 if st.button("Bar Chart を生成"):
     if not bar_cities:
-        st.warning("เขตอย่างน้อย 1 เขต")
+        st.warning("エリアを1つ以上選択してください。")
     else:
         with st.spinner("計算中..."):
             prices = [int(estimate([{"from_station": bar_station, "city": c, "road": bar_road}])[0])
