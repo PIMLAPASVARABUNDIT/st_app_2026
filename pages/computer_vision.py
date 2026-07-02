@@ -5,7 +5,7 @@ from google.cloud import vision
 
 # 定数の定義部分
 ACCENT_COLOR = "#e5548f"
-BG_SOFT = "#fdf2f7"
+BG_SOFT = "#dbeaff"
 
 
 # Google APIキーの読み取り
