@@ -3,3 +3,5 @@ scikit-learn==1.9.0
 matplotlib
 numpy
 google-cloud-vision==3.15.0
+pydub==0.25.1
+google-auth==2.55.1
